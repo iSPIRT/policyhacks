@@ -1,0 +1,446 @@
+/*!
+Theme Name: ProductNation Blog
+Theme URI: https://grandworks.co
+Author: GrandWorks
+Author URI: https://grandworks.co
+Description: Custom theme for iSPIRT ProductNation Blog
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: ispirt
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+ispirt is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+// MIXINS
+
+@mixin absolute-center() {display: flex; align-items: center; justify-content: center;}
+
+@mixin type-title() {color: #000000; font-family: 'Poppins', sans-serif; font-weight: 700; font-style: normal; font-size: 50px; line-height: 75px;}
+@mixin type-title-small() {color: #000000; font-family: 'Poppins', sans-serif; font-weight: 700; font-style: normal; font-size: 26px; line-height: 43px; margin-bottom: 0px;}
+@mixin type-link() {color: #000000; font-family: 'Archivo Narrow', sans-serif; font-weight: 600; font-size: 18px; line-height: 27px; margin: 0px; text-decoration: underline;}
+@mixin type-regular() {color: #3E6770; font-family: 'Archivo Narrow', sans-serif; font-weight: 400; font-style: normal; font-size: 18px; line-height: 27px;}
+@mixin type-regular-para() {color: #565656; font-family: 'Poppins', sans-serif; font-weight: 400; font-style: normal; font-size: 18px; line-height: 40px;}
+@mixin type-semi-bold() {font-weight: 600;font-size: 15px; line-height: 23px;}
+@mixin type-title-medium() {font-family: 'Poppins', sans-serif; font-size: 24px;line-height: 40px;font-weight: 900;color: #3E6770;}
+
+body{ @include type-regular();overflow-x: hidden;}
+
+h1,h2 {@include type-title();}
+h3 {@include type-title-small();}
+h4{@include type-title-medium();}
+p {@include type-regular();}
+a {@include type-link();
+  &:hover {color: #FF8231;}
+}
+
+[type='text'],[type='email'],[type='url'], textarea {
+  border: none; box-shadow: 0px 4px 11px 0px #D8E3E5; border-radius: 5px; padding: 21px 20px;@include type-regular();background-color:#FFFFFF; resize: none;
+
+  &::-webkit-input-placeholder { /* Edge */color: inherit; }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */  color: inherit; }
+
+  &::placeholder {color: inherit;}
+}
+textarea{margin-bottom: 40px;}
+
+[type='text']:focus,[type='email']:focus,[type='url']:focus, textarea:focus{
+  border: none; background: #ffffff; box-shadow: 0 0 5px #dcdcdc;
+}
+input::placeholder{color: #3E6770; }
+//placeholder css for chrome
+input::-webkit-input-placeholder{color: #3E6770; }
+//placeholder css for mozilla
+input::-moz-placeholder{color: #3E6770; }
+
+.button,.submit { background: #FF7F34; color: #ffffff; font-size: 18px; font-weight: 600; padding: 12px 20px; border-radius: 5px;text-decoration:underline;cursor:pointer;border: none;
+  &:hover,&:active,&:focus{background: #e66214;text-decoration: none;}
+}
+.clear{clear:both;}
+
+#top-navigation {background: #ffffff; width: 100%; height: 80px; top: 0px; left: 0px; z-index: 999; box-shadow: 0px 2px 32px 0px rgba(0, 0, 0, 0.1);position: fixed;
+  .logo {float: left; padding: 10px 40px 11px 40px;
+    img {width: 140px; height: auto;}
+  }
+  .the-navigation {float: right; padding: 0px 10px;
+    ul {list-style: none; margin: 0px; text-align: right;
+      li {float: left; margin-right: 30px;position: relative;
+        a {padding: 27px 0px 23px 0px; display: inline-block;}
+      }
+      ul.sub-menu {position: absolute; top: 0px; left: -50px; background: #ffffff; padding: 25px 30px; text-align: left; width: 200px; border-radius: 5px; box-shadow: 0px 2px 32px 0px rgba(0, 0, 0, 0.1); margin-top: 75px; display: none;
+        li {float: none; margin: 0px;
+          a {padding: 5px;}
+        }
+      }
+    }
+  }
+}
+//present in ispirt site...did not remove any css related to header and footer..
+#top-navigation .the-navigation ul li:hover ul.sub-menu {display: block;}
+#hamburger {display: none;}
+#top-header {width: 100%;
+  .grid-x {height: 100%;}
+  .left-content { height: 100%; padding-top: 80px; position: relative; background: #F2FDFF; display: flex; flex-direction: column; justify-content: center;
+    .intro-text {padding: 40px; border-bottom: 2px solid #CDF0F7; flex: 1;
+      .wrap {display: flex; flex-direction: column; justify-content: center; height: 100%;}
+      h2 {margin: 0px;}
+    }
+    .key-focus {padding: 40px 20px;
+      .cell {padding-left: 20px; padding-right: 20px;
+        .illustration {width: 90px; float: left; margin-right: 30px;}
+        .details {width: calc(100% - 120px); float: left;
+          p {margin: 0px; color: #000000;}
+        }
+      }
+    }
+    .header-feature {
+      .video-feature {width: 100%; height: 100%; background-size: auto 140%; background-position: center; position: relative; background-color: #FF8B25; background-blend-mode: screen;
+        &:after {content: ""; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgba(255, 139, 37, 0.1); background-blend-mode: screen;}
+        &:before {content: ""; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; background-image: url("img/play.svg"); z-index: 1; background-repeat: no-repeat; background-position: center;}
+
+      }
+      .content-feature {width: 100%; height: 100%; background-size: cover; background-position: center; position: relative; padding: 25px 40px; z-index: 1; background-image: url("img/letter.jpg");
+        &:after {content: ""; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; background: #000000; opacity: 0.7; z-index: -1;}
+        h3 {color: #ffffff;}
+        p {color: #ffffff; margin: 0px;}
+        a {color: #D9E899;}
+      }
+    }
+  }
+  .right-image {height: 100%; background-image: url("img/header-iamge.jpg"); background-position: center; background-size: cover;}
+}
+
+.site-footer { background: #000000;margin-top:50px;
+  .newsletter {width: 100%; height: 100%; @include absolute-center(); background-image: url("img/newsletter.jpg"); background-size: cover; background-position: center;
+    .wrap {max-width: 475px; margin: 0 auto;
+      h3 {color: #79C4D3; font-size: 50px; line-height: 58px; text-transform: none; margin-bottom: 30px;}
+      input.email { width: calc(100% - 132px); margin-right: 10px; float: left;}
+      .button {font-size: 18px; text-decoration: underline; color: #ffffff; background: #79C4D3; border-radius: 5px; font-weight: 600; padding: 11px 25px; float: left;}
+    }
+  }
+  .add {padding: 100px 0px;
+    h3 {color: #ffffff;}
+    p {color: #B1B9C3; margin: 0px;}
+    &.add1 {padding-left: 80px;}
+    &.add2 {padding-left: 10px;
+      .grandworks {width: 110px; position: relative; top: 1px; left: 1px; display: inline-block;
+        svg {width: 100%;}
+        svg path {transition: all 0.5s ease;}
+        &:hover {
+          svg path {fill: #ffffff; transition: all 0.5s ease;}
+        }
+      }
+    }
+  }
+  .foot { padding: 25px 0px; background: #202020;
+    .wrap {height: 100%; @include absolute-center();}
+    &.foot1 {border-right: 2px solid #282828;
+      h3 {color: #ffffff; float: left; margin: 0px; margin-top: 4px; margin-right: 20px;}
+      .social {float: left;
+        ul {list-style: none; margin: 0px;
+          li {float: left;}
+        }
+      }
+    }
+  }
+}
+.close-button {color: #000000;}
+//end of css for header and footer
+
+// start of css for blog page
+//generic css used in blog card list page and blog page
+
+.blog-card{padding:40px;box-shadow: 0px 5px 20px #D8E3E5;margin-bottom: 30px;background: #fff;
+  .author{@include type-semi-bold();color: #79C4D3; text-decoration: none;text-transform: capitalize;}
+  span.author{display: block;margin-bottom: 8px;}
+}
+
+.button-wrap{display: flex;justify-content: space-between;
+  .button{margin: 0px;}
+  .button-wrap-right{
+    // float: right;
+    .button-text{text-align:right;}
+    // .button{float: right;}
+  }
+}
+// .button-wrap-left{float: left;}
+
+
+.img-wrap{display: block;
+  img{height: 100%;width: 100%;
+    object-fit: cover;
+  }
+}
+
+.blog-title{display:block;@include type-title-small();text-decoration: none;word-break: break-word;
+  &:hover,&:active,&:focus{color:initial;}
+}
+
+//css for blog header
+.blog-header{position: relative;padding: 90px 0px;background-image:url("img/blog-background.jpg");background-size: cover;background-position: center;padding:150px 0px 120px 0px;z-index: 1;
+    h2{margin-bottom: 20px;
+      span{color: #79C4D3;}
+    }
+    .search-wrap{position: relative;width: 100%;height: 100%;@include absolute-center();
+      .search-submit{
+        background: url("img/search.svg") no-repeat;position: absolute;width: 30px;height: 28px;right: 15px;cursor: pointer;top:calc(100%/2 - 23px);
+      }
+    }
+    &:after{content:"";position: absolute;width: 100%;height: 100%;top: 0px;left: 0px;background-color: #F2FDFF;opacity: 0.9;z-index: -1;}
+}
+.card-outer-wrap{
+  // padding-bottom:60px;
+  position: relative;margin-top: -50px;z-index: 10;
+}
+//css for blog list page
+.all-blog-cards{
+  .blog-card{
+    .blog-title{margin-bottom: 30px;}
+    .description{margin-bottom: 40px;}
+  }
+  .img-wrap{ height: 300px;}
+  .pagination-nav{margin-top: 50px;
+    //start of pagination css
+    .pagination {
+        //css for previous button
+        .pagination-previous{float:left;text-decoration:underline;
+          a{@include type-link();
+            &:before {content: none;}
+          }
+          &:hover,&:active,&:focus{text-decoration: none;}
+        }
+        //css for next button
+        .pagination-next{float:right;text-decoration:underline;
+          a{@include type-link();
+            &:after {content: none;}
+          }
+          &:hover,&:active,&:focus{text-decoration: none;}
+        }
+        .current{background-color:#70C6D2;color: white;border-radius: 5px;}
+        a{color:#3E6770;text-decoration:none;border-radius: 5px;/*padding:0px 8px;*/display: inline-block;}
+        a.button{color:#FFFFFF;border-radius: 5px;padding:7px 28px;
+          &:hover,&:active,&:focus{background: #e66214;text-decoration: none;}
+        }
+    }
+  }
+
+}
+//css for blog page
+.blog-card-wrap{margin-top: 130px;
+  .blog-card{ padding:40px;
+    // margin-bottom:95px;
+    .author{margin:25px 0px 45px 0px;}
+    .blog-title{@include type-title();}
+    p{@include type-regular-para();color:#3E6770;margin-bottom: 40px;}
+    .img-wrap{margin-bottom:50px;}
+  }
+  .button-text{display:block;margin-bottom:15px;color:#3E6770;
+    &:hover{
+      color: #FF8231;
+    }
+  }
+}
+//end of css for blog pag
+// .comments-area{margin-top: 50px;
+  //// padding: 0px 50px;
+// }
+//start of wordpress comments section css for blog page
+.comment-respond {
+  [type='checkbox']{display:none;}
+  .comment-form{margin-top:15px;
+   label{display: none;}
+   .logged-in-as{display: none;}
+   .comment-notes{display: none;}
+  }
+}
+.comment-body{
+  .fn{position: relative; top: -15px;left: 10px;}
+  .says{display: none;}
+  .comment-metadata{display: none;
+    time{display: none}
+  }
+.comment-content{position: relative; left: 65px; bottom: 30px;
+  p{margin-bottom: 0px;}
+}
+}
+.comment-list{
+  li{list-style: none;}
+}
+
+//css for only medium screens- between 640px to 1000px
+@media screen and (max-width: 63.9375em) {
+  .blog-card{padding:0px;}
+  h4{font-size: 20px;line-height: 30px;}
+  #top-navigation .the-navigation {padding: 0px;float:none;}
+  .intro-text{margin-top: 60px;}
+  .site-footer .add.add2 {padding-top: 60px;}
+  .site-footer .foot.foot1 {padding: 30px 30px;}
+  .site-footer .foot .wrap{h3{margin-right: 0px; margin-bottom: 10px;}}
+
+  .blog-header{padding:140px 0px 120px 0px;}
+  // .card-outer-wrap{padding-bottom: 30px;}
+  //start of all blog cards css
+  .all-blog-cards {
+    .blog-card{
+      .blog-info{padding:40px;
+        .blog-title{font-size: 20px;line-height: 30px;margin-bottom:0px;}
+        .description{margin-bottom: 30px;}
+      }
+      .img-wrap{height: 300px;
+        img{width:100%;height:100%;}
+      }
+    }
+  }
+  //start of single blog cards css
+  .blog-card-wrap{
+    margin-top: 110px;
+    .blog-card{padding: 30px;
+      .blog-title{font-size: 30px;line-height: 40px;}
+      .author{margin:12px 0px 15px 0px;}
+      .img-wrap{margin-bottom: 20px;height: 500px;}
+      p{margin-bottom: 20px;}
+    }
+  }
+  //start of css for previous and next button
+  // .button-wrap-left{margin-bottom: 30px;float:none;display: inline-block;}
+  // .button-wrap-right{float: right;;
+    // .button{float: none;}
+  // }
+
+  .comments-area{margin-top:0px;
+    .logged-in-as{display: none;}
+    // .comment-form{margin-top: 15px;}
+    .comments-title,.comment-reply-title{font-size: 25px;line-height: 32px;}
+  }
+
+/********* header css starts ********/
+
+ //start of css taken from ispirt site since same header and footer code was included
+ body, p, a {font-size: 16px; line-height: 27px;}
+ h2 {font-size: 32px; line-height: 42px; margin-bottom: 30px;}
+
+ .grid-padding-x > .cell {padding-left: 15px; padding-right: 15px;}
+
+ .site-footer .foot .wrap{flex-wrap: wrap;}
+
+ #top-navigation {height: 60px;}
+ #top-navigation .logo {padding: 7px 25px; max-width: 150px;float:none;
+   img {width: 100%;}
+
+ }
+ #top-navigation .the-navigation {float: none;position: fixed; height: auto; max-height: calc(100% - 60px); overflow-y: scroll; width: 100%; background: rgba(255, 255, 255, 1); top: 60px; padding: 0px; display: none;}
+ #top-navigation .the-navigation ul li {width: 100%; float: none; text-align: left; margin-right: 0px;
+   &.menu-item-has-children a {background-image: url("img/down-arrow.svg"); background-size: 20px; background-repeat: no-repeat; background-position: calc(100% - 20px) center;}
+ }
+ #top-navigation .the-navigation ul li a {padding: 15px; width: 100%; display: block; background-color: #f3f3f3; border-bottom: 2px solid #eae8e8; text-decoration: none; text-transform: uppercase;}
+ #top-navigation .the-navigation ul ul.sub-menu {display: block; position: relative; left: 0px; padding: 0px; width: auto; margin: 0px; box-shadow: none; border-radius: 0px;}
+ #top-navigation .the-navigation ul ul.sub-menu li a {border-bottom: 0px; padding: 7px 40px; text-transform: none; background: #eae8e8;}
+ #top-navigation.open .the-navigation {display: block;}
+ // Hamburger menu
+
+ #hamburger {display: block; width: 30px; height: 30px; position: absolute; right: 20px; top: 20px; -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); -webkit-transition: .1s ease-in-out; -moz-transition: .1s ease-in-out; -o-transition: .1s ease-in-out; transition: .1s ease-in-out; cursor: pointer; }
+ #hamburger span { display: block; position: absolute; height: 3px; width: 100%; background: #000000; opacity: 1; left: 0; -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); -webkit-transition: .1s ease-in-out; -moz-transition: .1s ease-in-out; -o-transition: .1s ease-in-out; transition: .1s ease-in-out;}
+ #hamburger span:nth-child(1) {top: 0px;}
+
+ #hamburger span:nth-child(2),#hamburger span:nth-child(3) {top: 9px;}
+
+ #hamburger span:nth-child(4) {top: 18px;}
+
+ #top-navigation.open #hamburger span:nth-child(1) { top: 7px; width: 0%; left: 50%;}
+ #top-navigation.open #hamburger span:nth-child(2) {-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-o-transform: rotate(45deg);transform: rotate(45deg);}
+ #top-navigation.open #hamburger span:nth-child(3) { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);}
+ #top-navigation.open #hamburger span:nth-child(4) {top: 7px;width: 0%;left: 50%;}
+
+ #top-header {height: auto; min-height: auto;}
+ #top-header .right-image {height: calc(50vh - 60px); margin-top: 60px;}
+ #top-header .left-content .intro-text {padding: 30px;}
+ #top-header .left-content .intro-text h2 {font-size: 32px; line-height: 42px;}
+ #top-header .left-content {padding-top: 0px;}
+
+ #top-header .left-content .key-focus {padding: 30px 10px 0px 10px;}
+ #top-header .left-content .key-focus .cell .illustration {width: 60px; margin-right: 20px;}
+ #top-header .left-content .key-focus .cell .details {width: calc(100% - 80px); margin-bottom: 30px;}
+ #top-header .left-content .header-feature .content-feature {padding: 30px;}
+
+ .site-footer .newsletter {padding: 60px 30px;}
+ .site-footer .newsletter .wrap {width: 100%; max-width: 100%;}
+ .site-footer .newsletter .wrap p {margin-bottom: 0px;}
+ .site-footer .newsletter .wrap h3 {font-size: 32px; line-height: 42px; margin-bottom: 30px;}
+ .site-footer .newsletter .wrap input {width: 100%; margin-right: 0px; float: none;}
+ .site-footer .add, .site-footer .add.add1, .site-footer .add.add2 {padding: 60px 30px;}
+ .site-footer .add.add1 {padding-bottom: 30px;}
+ .site-footer .add.add2 {padding-top: 0px;}
+
+ #page-header {padding-top: 60px; margin-bottom: 60px;}
+ #page-header .bg-wrap {padding: 60px 0px;}
+ #page-header h1 {font-size: 36px; line-height: 42px;}
+
+}
+
+//css for only small screens-max 640px
+@media screen and (max-width: 40em) {
+  .blog-card{padding:0px;}
+  // .blog-card{padding: 25px;}
+  #top-navigation .the-navigation {float:right;}
+  .site-footer .newsletter {padding: 30px 30px;}
+  .site-footer .add, .site-footer .add.add1, .site-footer .add.add2 {padding: 30px 30px;}
+  h4{font-size: 20px;line-height: 30px;}
+  //start of single blog cards css
+  .blog-card-wrap {
+    // margin-top: 110px;
+    .blog-card{padding: 15px;margin-bottom: 50px;
+      .blog-title{font-size: 28px;line-height: 37px;}
+      .author{margin-top: 5px;}
+      .img-wrap{height: 300px;}
+      p{font-size: 15px;line-height: 30px;margin-bottom: 20px;}
+    }
+  }
+  //start of all blog cards css
+  .all-blog-cards{
+    // padding: 30px 0px;
+    .blog-card{
+      .blog-info{
+        .blog-title{font-size: 20px;line-height: 30px;margin-bottom: 5px;}
+        .description{margin-bottom: 10px;}
+        .read-more-button{display: block;}
+      }
+    }
+    .pagination-nav{
+      .pagination{
+        .pagination-next{display: block;}
+        .pagination-next,.pagination-previous{
+          a{font-size: 15px; padding: 5px 10px;line-height: 20px;}
+        }
+      }
+      a.page-numbers,span.page-numbers{display: none;}
+    }
+  }
+
+  .blog-header{padding:130px 0px 120px 0px;
+    p{margin-bottom: 0px;}
+    .search-wrap{margin-top: 20px;}
+    h2{font-size: 30px;line-height: 39px;margin-bottom: 10px;}
+  }
+  .card-outer-wrap{margin-top: -80px;}
+  .all-blog-cards{padding: 35px 0px;}
+  .button-wrap{flex-direction: column;
+    .button-wrap-right{margin-top: 20px;
+      .button-text{text-align: initial;}
+    }
+  }
+
+
+}
+
+.site-footer .medium-7{.wrap{p a{color:#B1B9C3; &:hover{ color: #FF8231;}}}}
+
+.no-scroll{overflow: hidden;}
