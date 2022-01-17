@@ -29,8 +29,9 @@ while(have_posts())
             <span class="author"><?= get_the_date();?> - <a href="<?= get_author_posts_url(get_the_author_meta( 'ID' )); ?>	" class="author"> By <?= get_the_author();?></a></span>
             <div class="img-wrap">
 				<?php
-					$featured_image = get_the_post_thumbnail_url();
-					if($featured_image !== "" ) {?>
+					$featured_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
+
+					if($featured_image) {?>
 						<img src="<?= $featured_image; ?>">
 					<?php
 					}
